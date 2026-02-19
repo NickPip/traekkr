@@ -113,7 +113,7 @@ button {
 .traekkr-logo {
   font-family: var(--font-traekkr);
   font-size: 1.875rem;
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: 0.3em;
   color: #fff;
 }
@@ -135,24 +135,23 @@ button {
   height: 25rem;
 }
 
-/* Left cell: square black box, letter centered with even padding */
+/* Left cell: black box, letter at top, bold, white */
 .traekkr-nav-letter {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   min-height: 0;
-  padding: 1rem;
+  padding: 0.3rem 1rem 1rem 1rem; /* top right bottom left – reduce top to move letter up */
   background: #000;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
   transition: color 0.3s ease, background 0.3s ease;
 }
 
 .traekkr-nav-letter[data-active='true'] {
-  color: rgba(255, 255, 255, 0.95);
-  background: rgba(20, 20, 20, 1);
+  color: #fff;
 }
 
 /* Right cell: label in solid black box – same row height as letter */
@@ -173,10 +172,6 @@ button {
 
 .traekkr-nav-btn:hover {
   background: rgba(25, 25, 25, 1);
-}
-
-.traekkr-nav-btn[data-active='true'] {
-  background: rgba(35, 35, 35, 1);
 }
 
 /* Content card – bottom-right (Figma) */
@@ -227,6 +222,88 @@ button {
   margin: 0;
   color: rgba(229, 229, 229, 0.8);
   font-size: 1rem;
+}
+
+/* Services page */
+.traekkr-services {
+  max-width: 48rem;
+}
+
+.traekkr-services-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.traekkr-services-link {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.traekkr-services-link:hover {
+  text-decoration: underline;
+}
+
+.traekkr-services-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.traekkr-services-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.traekkr-service-block {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.traekkr-service-block:last-child {
+  border-bottom: none;
+}
+
+.traekkr-service-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.traekkr-service-target-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.traekkr-service-target-list {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.traekkr-services-empty {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.traekkr-services-empty a {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* Responsive */
