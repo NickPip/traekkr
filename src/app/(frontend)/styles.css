@@ -118,69 +118,72 @@ button {
   color: #fff;
 }
 
-/* Nav: two columns – letters | menu items, centered in viewport */
+/* Nav: grid so each row has same height (letter + label paired) */
 .traekkr-nav {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(5, 1fr);
   width: max-content;
+  min-width: 18rem;
+  min-height: 22rem;
 }
 
-.traekkr-nav-letters {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: rgba(0, 0, 0, 0.8);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 2rem 1rem;
-}
-
+/* Left cell: letter in solid black box */
 .traekkr-nav-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0 1.25rem;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
   font-size: 0.875rem;
   font-weight: 300;
   letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 0.3s ease;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease, background 0.3s ease;
 }
 
 .traekkr-nav-letter[data-active='true'] {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(20, 20, 20, 1);
 }
 
-.traekkr-nav-items {
-  display: flex;
-  flex-direction: column;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(8px);
-}
-
+/* Right cell: label in solid black box – same row height as letter */
 .traekkr-nav-btn {
-  display: block;
-  padding: 2rem 4rem;
-  font-size: 1.5rem;
-  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 0;
+  padding: 0 0.6rem 0 4rem;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 2.25rem;
+  font-weight: 700;
   letter-spacing: 0.025em;
   color: #fff;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: right;
   transition: background 0.3s ease;
 }
 
-.traekkr-nav-items .traekkr-nav-btn:last-child {
+/* Last row: no bottom border */
+.traekkr-nav-letter:nth-child(9),
+.traekkr-nav-btn:nth-child(10) {
   border-bottom: none;
 }
 
 .traekkr-nav-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(25, 25, 25, 1);
 }
 
 .traekkr-nav-btn[data-active='true'] {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(35, 35, 35, 1);
 }
 
 /* Content card – bottom-right (Figma) */
@@ -246,35 +249,21 @@ button {
   }
 
   .traekkr-nav {
-    flex-direction: column;
-    width: auto;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    min-height: 16rem;
+    min-width: 0;
     max-width: 90vw;
   }
 
-  .traekkr-nav-letters {
-    flex-direction: row;
-    justify-content: center;
-    gap: 1rem;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem;
-  }
-
-  .traekkr-nav-items {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  .traekkr-nav-letter {
+    padding: 0.5rem 0.75rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
   }
 
   .traekkr-nav-btn {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border-bottom: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .traekkr-nav-items .traekkr-nav-btn:last-child {
-    border-right: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
   }
 
   .traekkr-content-card {

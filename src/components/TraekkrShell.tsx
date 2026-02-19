@@ -1,8 +1,8 @@
 'use client'
 
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
 
 const MENU_ITEMS = [
   { id: 'Services', label: 'Services', letter: 'S', href: '/services' },
@@ -53,24 +53,18 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
         </Link>
       </header>
 
-      {/* Navigation: letters column + menu column (Figma layout) */}
+      {/* Navigation: one row per item so letter + label share same height */}
       <nav className="traekkr-nav" aria-label="Main">
-        <div className="traekkr-nav-letters">
-          {MENU_ITEMS.map((item) => (
+        {MENU_ITEMS.map((item) => (
+          <React.Fragment key={item.id}>
             <div
-              key={item.letter}
               className="traekkr-nav-letter"
               data-active={currentSection === item.id}
             >
               {item.letter}
             </div>
-          ))}
-        </div>
-        <div className="traekkr-nav-items">
-          {MENU_ITEMS.map((item) =>
-            isHome ? (
+            {isHome ? (
               <button
-                key={item.id}
                 type="button"
                 onClick={() => setActiveSection(item.id)}
                 className="traekkr-nav-btn"
@@ -80,16 +74,15 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
               </button>
             ) : (
               <Link
-                key={item.id}
                 href={item.href}
                 className="traekkr-nav-btn"
                 data-active={currentSection === item.id}
               >
                 {item.label}
               </Link>
-            )
-          )}
-        </div>
+            )}
+          </React.Fragment>
+        ))}
       </nav>
 
       {/* Content: card on home, page content elsewhere */}
