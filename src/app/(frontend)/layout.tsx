@@ -1,9 +1,13 @@
 import React from 'react'
+
+import { TraekkrShell } from '@/components/TraekkrShell'
+
+import './theme.css'
 import './styles.css'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'Traekkr – Security consulting.',
+  title: 'Traekkr',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -12,7 +16,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <main>
+          <TraekkrShell>{children}</TraekkrShell>
+        </main>
       </body>
     </html>
   )
