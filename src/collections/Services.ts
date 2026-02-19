@@ -17,6 +17,14 @@ export const Services: CollectionConfig = {
       label: 'Service title',
     },
     {
+      name: 'description',
+      type: 'textarea',
+      label: 'Detailed description',
+      admin: {
+        description: 'Shown in the popup when user clicks the service.',
+      },
+    },
+    {
       name: 'targetItems',
       type: 'array',
       label: 'Target',
