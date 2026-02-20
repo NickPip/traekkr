@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
 import { BackButton } from '@/components/BackButton'
@@ -21,11 +21,17 @@ export function ServicesListWithModal({
   const [showForm, setShowForm] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
 
-  const openModal = (service: ServiceItem) => {
+  const closeModal = useCallback(() => {
+    setOpenService(null)
+    setShowForm(false)
+    setSubmitStatus('idle')
+  }, [])
+
+  const openModal = useCallback((service: ServiceItem) => {
     setOpenService(service)
     setShowForm(false)
     setSubmitStatus('idle')
-  }
+  }, [])
 
   useEffect(() => {
     if (!openService) return
@@ -34,13 +40,7 @@ export function ServicesListWithModal({
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [openService])
-
-  const closeModal = () => {
-    setOpenService(null)
-    setShowForm(false)
-    setSubmitStatus('idle')
-  }
+  }, [openService, closeModal])
 
   return (
     <>
@@ -110,11 +110,10 @@ export function ServicesListWithModal({
                 <h2 id="service-modal-title" className="traekkr-modal-title">
                   {openService.title}
                 </h2>
-                {openService.description && (
-                  <p className="traekkr-modal-description">
-                    {openService.description}
-                  </p>
-                )}
+                <p className="traekkr-service-target-label">Description</p>
+                <p className="traekkr-modal-description">
+                  {openService.description?.trim() || '—'}
+                </p>
                 <p className="traekkr-service-target-label">Target</p>
                 <p className="traekkr-service-target-list">
                   {openService.targetItems?.map((t) => t.item).join(', ') ?? '—'}

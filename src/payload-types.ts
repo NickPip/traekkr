@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     services: Service;
     orders: Order;
+    'write-ups': WriteUp;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
+    'write-ups': WriteUpsSelect<false> | WriteUpsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -200,6 +202,26 @@ export interface Order {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "write-ups".
+ */
+export interface WriteUp {
+  id: string;
+  title: string;
+  /**
+   * URL path, e.g. "my-first-write-up" → /write-ups/my-first-write-up
+   */
+  slug: string;
+  publishedDate: string;
+  author: string;
+  /**
+   * Full content shown when user opens the write-up.
+   */
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -237,6 +259,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'orders';
         value: string | Order;
+      } | null)
+    | ({
+        relationTo: 'write-ups';
+        value: string | WriteUp;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -345,6 +371,19 @@ export interface OrdersSelect<T extends boolean = true> {
   email?: T;
   message?: T;
   serviceTitle?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "write-ups_select".
+ */
+export interface WriteUpsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  publishedDate?: T;
+  author?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

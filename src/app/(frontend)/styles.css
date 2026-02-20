@@ -477,6 +477,179 @@ button {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* Write-Ups list */
+.traekkr-writeups {
+  max-width: 48rem;
+}
+
+.traekkr-writeups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.traekkr-writeup-block {
+  display: block;
+  padding: 1.25rem 1.25rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.traekkr-writeup-block:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.traekkr-writeup-block:last-child {
+  border-bottom: none;
+}
+
+.traekkr-writeup-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.traekkr-writeup-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.traekkr-writeup-date,
+.traekkr-writeup-author {
+  margin: 0;
+}
+
+/* Write-Up single (popup-style page) */
+.traekkr-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.traekkr-popup {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  background: rgba(18, 18, 18, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+}
+
+.traekkr-popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.traekkr-popup-close:hover {
+  color: #fff;
+}
+
+.traekkr-popup-header {
+  margin-bottom: 1.5rem;
+  padding-right: 2.5rem;
+}
+
+.traekkr-popup-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.traekkr-popup-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.traekkr-popup-meta time,
+.traekkr-popup-author {
+  margin: 0;
+}
+
+.traekkr-popup-body {
+  margin-bottom: 1.5rem;
+}
+
+.traekkr-popup-description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: pre-wrap;
+}
+
+.traekkr-popup-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Share buttons */
+.traekkr-share {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.traekkr-share-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.traekkr-share-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.traekkr-share-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.traekkr-share-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .traekkr-header {
