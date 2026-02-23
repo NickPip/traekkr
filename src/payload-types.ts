@@ -72,6 +72,7 @@ export interface Config {
     services: Service;
     orders: Order;
     'write-ups': WriteUp;
+    tools: Tool;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     'write-ups': WriteUpsSelect<false> | WriteUpsSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -222,6 +224,29 @@ export interface WriteUp {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: string;
+  title: string;
+  /**
+   * URL path, e.g. "my-tool" → /tools/my-tool
+   */
+  slug: string;
+  publishedDate: string;
+  /**
+   * URL to the tool (e.g. https://example.com/tool). Opens when user clicks "Open tool".
+   */
+  link: string;
+  /**
+   * Full content shown when user opens the tool page.
+   */
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -263,6 +288,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'write-ups';
         value: string | WriteUp;
+      } | null)
+    | ({
+        relationTo: 'tools';
+        value: string | Tool;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -383,6 +412,19 @@ export interface WriteUpsSelect<T extends boolean = true> {
   slug?: T;
   publishedDate?: T;
   author?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  publishedDate?: T;
+  link?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
