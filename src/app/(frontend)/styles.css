@@ -14,6 +14,8 @@
   --traekkr-text: #e5e5e5;
   --traekkr-nav-bg: rgba(26, 26, 26, 0.85);
   --traekkr-nav-border: rgba(255, 255, 255, 0.08);
+  --traekkr-accent: rgba(255, 255, 255, 0.35);
+  --traekkr-accent-dim: rgba(255, 255, 255, 0.08);
 }
 
 * {
@@ -609,13 +611,145 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: rgba(160, 220, 255, 0.95);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
 
 .traekkr-tool-block:hover .traekkr-tool-link {
   text-decoration: underline;
-  color: rgba(180, 230, 255, 1);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Contact page – fixed width, compact so it fits in viewport at 100% */
+.traekkr-contact {
+  width: 48rem;
+  max-width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.traekkr-contact .traekkr-services-nav {
+  margin-bottom: 1.25rem;
+}
+
+.traekkr-contact-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+
+.traekkr-contact-header {
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: right;
+}
+
+.traekkr-contact-heading {
+  margin: 0 0 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.traekkr-contact-heading:last-of-type {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.traekkr-contact-email {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.traekkr-contact-email:hover {
+  color: #fff;
+}
+
+.traekkr-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+}
+
+.traekkr-contact-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.traekkr-contact-label-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.traekkr-contact-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.35rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.traekkr-contact-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.traekkr-contact-input:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.traekkr-contact-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 3px var(--traekkr-accent-dim);
+}
+
+.traekkr-contact-textarea {
+  resize: vertical;
+  min-height: 3.5rem;
+}
+
+.traekkr-contact-submit {
+  margin-top: 0.25rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.35rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.traekkr-contact-submit:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.traekkr-contact-submit:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 3px;
 }
 
 /* Write-Up single (popup-style page) */
