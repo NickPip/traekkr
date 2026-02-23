@@ -40,7 +40,7 @@ export default async function ToolsListPage() {
     <section className="traekkr-section traekkr-tools">
       <nav className="traekkr-services-nav">
         <Link href="/" className="traekkr-services-link">
-          home
+          Home
         </Link>
         <h1 className="traekkr-services-title">Tools</h1>
         <BackButton className="traekkr-services-link" />

@@ -11,7 +11,7 @@ export default function ContactPage() {
     <section className="traekkr-section traekkr-contact">
       <nav className="traekkr-services-nav">
         <Link href="/" className="traekkr-services-link">
-          home
+          Home
         </Link>
         <h1 className="traekkr-services-title">Contact</h1>
         <BackButton className="traekkr-services-link" />

@@ -46,7 +46,7 @@ export function ServicesListWithModal({
     <>
       <nav className="traekkr-services-nav">
         <Link href="/" className="traekkr-services-link">
-          home
+          Home
         </Link>
         <h1 className="traekkr-services-title">Services</h1>
         <BackButton className="traekkr-services-link" />

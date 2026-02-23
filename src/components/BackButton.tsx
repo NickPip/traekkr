@@ -10,7 +10,7 @@ export function BackButton({ className }: { className?: string }) {
       className={className}
       onClick={() => router.back()}
     >
-      back
+      Back
     </button>
   )
 }
