@@ -761,6 +761,103 @@ button {
   outline-offset: 3px;
 }
 
+/* About page – compact so it fits in viewport at 100% */
+.traekkr-about {
+  width: 48rem;
+  max-width: 100%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.traekkr-about .traekkr-services-nav {
+  margin-bottom: 1rem;
+}
+
+.traekkr-about-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.traekkr-about-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  padding: 0.75rem 1.25rem;
+}
+
+.traekkr-about-heading {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.traekkr-about-body {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.traekkr-about-body p {
+  margin: 0;
+}
+
+.traekkr-about-body strong {
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 600;
+}
+
+.traekkr-about-cta {
+  margin-top: 0.25rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  text-align: center;
+}
+
+.traekkr-about-cta-text {
+  margin: 0 0 0.6rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.traekkr-about-cta-text strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.traekkr-about-cta-btn {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.35rem;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.traekkr-about-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.traekkr-about-cta-btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 3px;
+}
+
 /* Write-Up single (popup-style page) */
 .traekkr-popup-overlay {
   position: fixed;
