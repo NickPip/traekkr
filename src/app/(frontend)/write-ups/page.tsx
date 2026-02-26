@@ -49,28 +49,21 @@ export default async function WriteUpsListPage() {
       </nav>
 
       <div className="traekkr-writeups-list">
-        {writeUps.length === 0 ? (
-          <p className="traekkr-services-empty">
-            No write-ups yet. Add them in the{' '}
-            <Link href="/admin/collections/write-ups">admin</Link>.
-          </p>
-        ) : (
-          writeUps.map((item) => (
-            <Link
-              key={item.id}
-              href={`/write-ups/${item.slug}`}
-              className="traekkr-writeup-block"
-            >
-              <h2 className="traekkr-writeup-title">{item.title}</h2>
-              <div className="traekkr-writeup-meta">
-                <span className="traekkr-writeup-date">
-                  {formatDate(item.publishedDate)}
-                </span>
-                <span className="traekkr-writeup-author">{item.author}</span>
-              </div>
-            </Link>
-          ))
-        )}
+        {writeUps.map((item) => (
+          <Link
+            key={item.id}
+            href={`/write-ups/${item.slug}`}
+            className="traekkr-writeup-block"
+          >
+            <h2 className="traekkr-writeup-title">{item.title}</h2>
+            <div className="traekkr-writeup-meta">
+              <span className="traekkr-writeup-date">
+                {formatDate(item.publishedDate)}
+              </span>
+              <span className="traekkr-writeup-author">{item.author}</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   )
