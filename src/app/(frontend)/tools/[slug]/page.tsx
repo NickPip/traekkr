@@ -5,6 +5,8 @@ import React from 'react'
 
 import '../../styles.css'
 
+export const dynamic = 'force-dynamic'
+
 type ToolDoc = {
   id: string
   title: string
@@ -33,6 +35,9 @@ export default async function ToolPage({
     notFound()
   }
 
+  // doc is defined here (notFound() throws)
+  const pageDoc = doc as ToolDoc
+
   const formatDate = (dateStr: string) => {
     try {
       const d = new Date(dateStr)
@@ -46,9 +51,9 @@ export default async function ToolPage({
     }
   }
 
-  let linkHostname = doc.link
+  let linkHostname = pageDoc.link
   try {
-    linkHostname = new URL(doc.link).hostname
+    linkHostname = new URL(pageDoc.link).hostname
   } catch {
     // leave as-is if invalid URL
   }
@@ -65,18 +70,18 @@ export default async function ToolPage({
         </Link>
 
         <header className="traekkr-popup-header">
-          <h1 className="traekkr-popup-title">{doc.title}</h1>
+          <h1 className="traekkr-popup-title">{pageDoc.title}</h1>
           <div className="traekkr-popup-meta">
-            <time dateTime={doc.publishedDate}>
-              {formatDate(doc.publishedDate)}
+            <time dateTime={pageDoc.publishedDate}>
+              {formatDate(pageDoc.publishedDate)}
             </time>
           </div>
         </header>
 
         <div className="traekkr-popup-body">
-          <p className="traekkr-popup-description">{doc.description}</p>
+          <p className="traekkr-popup-description">{pageDoc.description}</p>
           <a
-            href={doc.link}
+            href={pageDoc.link}
             target="_blank"
             rel="noopener noreferrer"
             className="traekkr-popup-link"

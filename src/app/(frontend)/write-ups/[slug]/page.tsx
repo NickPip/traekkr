@@ -8,6 +8,8 @@ import { ShareButtons } from '@/components/ShareButtons'
 
 import '../../styles.css'
 
+export const dynamic = 'force-dynamic'
+
 type WriteUpDoc = {
   id: string
   title: string

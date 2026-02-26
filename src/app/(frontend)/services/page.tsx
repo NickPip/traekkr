@@ -6,6 +6,8 @@ import { ServicesListWithModal } from '@/components/ServicesListWithModal'
 
 import '../styles.css'
 
+export const dynamic = 'force-dynamic'
+
 type ServiceDoc = {
   id: string
   title: string

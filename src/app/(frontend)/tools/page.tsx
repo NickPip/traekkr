@@ -7,6 +7,8 @@ import { BackButton } from '@/components/BackButton'
 
 import '../styles.css'
 
+export const dynamic = 'force-dynamic'
+
 type ToolDoc = {
   id: string
   title: string

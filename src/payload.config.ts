@@ -1,8 +1,8 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
+import { fileURLToPath, pathToFileURL } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
@@ -28,8 +28,19 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URL || 'mongodb://127.0.0.1/traekkr',
+  db: sqliteAdapter({
+    client: {
+      url: (() => {
+        const url = process.env.DATABASE_URL
+        // Use DATABASE_URL only if it's SQLite-compatible (file:, libsql:, etc.)
+        if (url && !url.startsWith('mongodb')) return url
+        return pathToFileURL(
+          path.join(process.cwd(), 'data', 'payload.sqlite'),
+        ).href
+      })(),
+    },
+    idType: 'uuid',
+    wal: true,
   }),
   sharp,
   plugins: [],
