@@ -44,12 +44,14 @@ export function ServicesListWithModal({
 
   return (
     <>
-      <nav className="traekkr-services-nav">
-        <Link href="/" className="traekkr-services-link">
-          Home
-        </Link>
+      <nav className="traekkr-services-nav" aria-label="Services">
         <h1 className="traekkr-services-title">Services</h1>
-        <BackButton className="traekkr-services-link" />
+        <div className="traekkr-services-actions">
+          <Link href="/" className="traekkr-services-link">
+            Home
+          </Link>
+          <BackButton className="traekkr-services-link" />
+        </div>
       </nav>
 
       <div className="traekkr-services-list">

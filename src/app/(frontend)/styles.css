@@ -286,10 +286,7 @@ button {
   z-index: 10;
   max-width: 28rem;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
+  background: #000;
 }
 
 .traekkr-content-title {
@@ -307,12 +304,16 @@ button {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Section pages (children when not home) */
+/* Section pages (children when not home) – central column */
 .traekkr-section {
   position: relative;
   z-index: 1;
-  padding: 4rem 3rem;
+  width: 100%;
   max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4rem 3rem;
+  box-sizing: border-box;
 }
 
 .traekkr-section h1 {
@@ -339,25 +340,39 @@ button {
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 2rem;
+  width: 100%;
+}
+
+.traekkr-services-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.traekkr-services-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .traekkr-services-link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: #fff;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.35rem;
+  background: #000;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-family: inherit;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .traekkr-services-link:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(25, 25, 25, 1);
   color: #fff;
 }
 
@@ -366,22 +381,17 @@ button {
   outline-offset: 2px;
 }
 
-.traekkr-services-title {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-}
-
 .traekkr-services-list {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .traekkr-service-block {
-  padding: 1.5rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.35);
+  padding: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #000;
+  box-sizing: border-box;
 }
 
 .traekkr-service-block:last-child {
@@ -390,20 +400,20 @@ button {
 
 .traekkr-service-title {
   margin: 0 0 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #fff;
 }
 
 .traekkr-service-target-label {
   margin: 0 0 0.25rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: #9ca3af;
 }
 
 .traekkr-service-target-list {
-  margin: 0;
+  margin: 0.75rem 0 0;
   font-size: 0.9rem;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.75);
@@ -425,7 +435,7 @@ button {
 }
 
 .traekkr-service-block-clickable:hover {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(25, 25, 25, 1);
 }
 
 /* Service modal */
@@ -609,21 +619,15 @@ button {
   justify-content: center;
   min-height: 5.5rem;
   padding: 1.25rem 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: #000;
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
   box-sizing: border-box;
-  border-left: 3px solid rgba(255, 255, 255, 0.25);
 }
 
 .traekkr-writeup-block:hover {
-  background: rgba(0, 0, 0, 0.55);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background: rgba(25, 25, 25, 1);
   transform: translateY(-1px);
 }
 
@@ -673,21 +677,15 @@ button {
   justify-content: center;
   min-height: 5.5rem;
   padding: 1.25rem 1.5rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: #000;
   text-decoration: none;
   color: inherit;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
   box-sizing: border-box;
-  border-left: 3px solid rgba(255, 255, 255, 0.25);
 }
 
 .traekkr-tool-block:hover {
-  background: rgba(0, 0, 0, 0.55);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background: rgba(25, 25, 25, 1);
   transform: translateY(-1px);
 }
 
@@ -744,18 +742,14 @@ button {
 }
 
 .traekkr-contact-card {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  background: #000;
   overflow: hidden;
 }
 
 .traekkr-contact-header {
   padding: 0.75rem 1.25rem;
-  background: rgba(0, 0, 0, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   text-align: right;
 }
 
@@ -845,16 +839,13 @@ button {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 0.35rem;
+  background: #000;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .traekkr-contact-submit:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(25, 25, 25, 1);
   transform: translateY(-1px);
 }
 
@@ -882,11 +873,7 @@ button {
 }
 
 .traekkr-about-card {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  background: #000;
   padding: 0.75rem 1.25rem;
 }
 
@@ -916,10 +903,7 @@ button {
 .traekkr-about-cta {
   margin-top: 0.25rem;
   padding: 0.75rem 1.25rem;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  border-left: 3px solid rgba(255, 255, 255, 0.25);
+  background: #000;
   text-align: center;
 }
 
@@ -942,16 +926,13 @@ button {
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 0.35rem;
+  background: #000;
   text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .traekkr-about-cta-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(25, 25, 25, 1);
   transform: translateY(-1px);
 }
 
@@ -1166,15 +1147,20 @@ button {
     flex: 1 1 100%;
     order: -1;
     font-size: 1.35rem;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0 0.25rem;
+    padding: 0 0.25rem 0 0;
+  }
+
+  .traekkr-services-actions {
+    width: 100%;
+    justify-content: flex-end;
   }
 
   .traekkr-services-link {
-    padding: 0.45rem 0.85rem;
+    padding: 0.5rem 1rem;
     font-size: 0.85rem;
   }
 

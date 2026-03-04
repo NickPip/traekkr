@@ -8,12 +8,14 @@ import '../styles.css'
 export default function AboutPage() {
   return (
     <section className="traekkr-section traekkr-about">
-      <nav className="traekkr-services-nav">
-        <Link href="/" className="traekkr-services-link">
-          Home
-        </Link>
+      <nav className="traekkr-services-nav" aria-label="About">
         <h1 className="traekkr-services-title">About us</h1>
-        <BackButton className="traekkr-services-link" />
+        <div className="traekkr-services-actions">
+          <Link href="/" className="traekkr-services-link">
+            Home
+          </Link>
+          <BackButton className="traekkr-services-link" />
+        </div>
       </nav>
 
       <div className="traekkr-about-list">
