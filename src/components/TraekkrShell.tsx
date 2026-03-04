@@ -27,7 +27,7 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
   const currentSection = getActiveSectionFromPath(pathname)
 
   return (
-    <div className="traekkr">
+    <div className={`traekkr${isHome ? ' traekkr-animate-in' : ''}`}>
       <div className="traekkr-bg" aria-hidden />
       <div className="traekkr-overlay" aria-hidden />
 
@@ -57,6 +57,16 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
             </React.Fragment>
           ))}
         </nav>
+      )}
+
+      {isHome && (
+        <a
+          href="#"
+          className="traekkr-bottom-n"
+          aria-label="N"
+        >
+          N
+        </a>
       )}
 
       {children}
