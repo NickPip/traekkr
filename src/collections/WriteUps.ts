@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { lexicalEditor, BlocksFeature, CodeBlock } from '@payloadcms/richtext-lexical'
 
 export const WriteUps: CollectionConfig = {
   slug: 'write-ups',
@@ -45,12 +46,21 @@ export const WriteUps: CollectionConfig = {
     },
     {
       name: 'description',
-      type: 'textarea',
+      type: 'richText',
       required: true,
       label: 'Description',
       admin: {
-        description: 'Full content shown when user opens the write-up.',
+        description:
+          'Full content shown when user opens the write-up. Use the block menu (e.g. type / or use +) to add code blocks.',
       },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({
+            blocks: [CodeBlock()],
+          }),
+        ],
+      }),
     },
   ],
 }
