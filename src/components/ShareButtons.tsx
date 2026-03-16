@@ -1,12 +1,15 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export function ShareButtons({ url: path, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false)
+  const [fullUrl, setFullUrl] = useState(path)
 
-  const fullUrl =
-    typeof window !== 'undefined' ? `${window.location.origin}${path}` : path
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setFullUrl(`${window.location.origin}${path}`)
+  }, [path])
 
   const shareUrl = encodeURIComponent(fullUrl)
   const shareTitle = encodeURIComponent(title)

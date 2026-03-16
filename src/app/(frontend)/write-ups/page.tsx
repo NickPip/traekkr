@@ -4,20 +4,30 @@ import Link from 'next/link'
 import React from 'react'
 
 import { BackButton } from '@/components/BackButton'
+import { RenderLexical } from '@/components/RenderLexical'
+import { ShareButtons } from '@/components/ShareButtons'
 
 import '../styles.css'
 
 export const dynamic = 'force-dynamic'
 
-type WriteUpDoc = {
+interface WriteUpDoc {
   id: string
   title: string
   slug: string
   publishedDate: string
   author: string
+  description?: unknown
 }
 
-export default async function WriteUpsListPage() {
+interface WriteUpsListPageProps {
+  searchParams?: { slug?: string }
+}
+
+export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
+  const { searchParams } = props
+  const activeSlug = searchParams?.slug
+
   const payload = await getPayload({ config: await configPromise })
   const result = await payload.find({
     collection: 'write-ups',
@@ -25,7 +35,11 @@ export default async function WriteUpsListPage() {
   })
   const writeUps = (result.docs ?? []) as WriteUpDoc[]
 
-  const formatDate = (dateStr: string) => {
+  const activeDoc = activeSlug
+    ? writeUps.find((item) => item.slug === activeSlug)
+    : undefined
+
+  const formatDateShort = (dateStr: string) => {
     try {
       const d = new Date(dateStr)
       return d.toLocaleDateString(undefined, {
@@ -37,6 +51,27 @@ export default async function WriteUpsListPage() {
       return dateStr
     }
   }
+
+  const formatDateLong = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr)
+      return d.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    } catch {
+      return dateStr
+    }
+  }
+
+  const hasLexicalDescription =
+    activeDoc &&
+    activeDoc.description &&
+    typeof activeDoc.description === 'object' &&
+    'root' in activeDoc.description &&
+    // @ts-expect-error – runtime check for lexical tree
+    activeDoc.description.root?.children?.length
 
   return (
     <section className="traekkr-section traekkr-writeups">
@@ -54,19 +89,66 @@ export default async function WriteUpsListPage() {
         {writeUps.map((item) => (
           <Link
             key={item.id}
-            href={`/write-ups/${item.slug}`}
+            href={{ pathname: '/write-ups', query: { slug: item.slug } }}
             className="traekkr-writeup-block"
           >
             <h2 className="traekkr-writeup-title">{item.title}</h2>
             <div className="traekkr-writeup-meta">
               <span className="traekkr-writeup-date">
-                {formatDate(item.publishedDate)}
+                {formatDateShort(item.publishedDate)}
               </span>
               <span className="traekkr-writeup-author">{item.author}</span>
             </div>
           </Link>
         ))}
       </div>
+
+      {activeDoc && (
+        <div className="traekkr-popup-overlay">
+          <article className="traekkr-popup">
+            <Link
+              href="/write-ups"
+              className="traekkr-popup-close"
+              aria-label="Close"
+            >
+              ×
+            </Link>
+
+            <header className="traekkr-popup-header">
+              <h1 className="traekkr-popup-title">{activeDoc.title}</h1>
+              <div className="traekkr-popup-meta">
+                <time dateTime={activeDoc.publishedDate}>
+                  {formatDateLong(activeDoc.publishedDate)}
+                </time>
+                <span className="traekkr-popup-author">{activeDoc.author}</span>
+              </div>
+            </header>
+
+            <div className="traekkr-popup-body">
+              {hasLexicalDescription ? (
+                <RenderLexical
+                  // @ts-expect-error – lexical JSON shape
+                  content={activeDoc.description}
+                />
+              ) : (
+                <p className="traekkr-popup-description">
+                  {typeof activeDoc.description === 'string'
+                    ? activeDoc.description
+                    : ''}
+                </p>
+              )}
+            </div>
+
+            <footer className="traekkr-popup-footer">
+              <ShareButtons
+                url={`/write-ups/${activeDoc.slug}`}
+                title={activeDoc.title}
+              />
+            </footer>
+          </article>
+        </div>
+      )}
     </section>
   )
 }
+

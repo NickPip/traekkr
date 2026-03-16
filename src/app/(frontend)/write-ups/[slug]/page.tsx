@@ -1,6 +1,5 @@
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -13,18 +12,21 @@ import '../../styles.css'
 
 export const dynamic = 'force-dynamic'
 
-export default async function WriteUpPage({
-  params,
-}: {
+interface WriteUpPageProps {
   params: Promise<{ slug: string }>
-}) {
+}
+
+export default async function WriteUpPage(props: WriteUpPageProps) {
+  const { params } = props
   const { slug } = await params
+
   const payload = await getPayload({ config: await configPromise })
   const result = await payload.find({
     collection: 'write-ups',
     where: { slug: { equals: slug } },
     limit: 1,
   })
+
   const doc = result.docs?.[0] as WriteUp | undefined
 
   if (!doc) notFound()
@@ -49,43 +51,41 @@ export default async function WriteUpPage({
     doc.description.root?.children?.length
 
   return (
-    <div className="traekkr-popup-overlay">
-      <article className="traekkr-popup">
-        <Link
-          href="/write-ups"
-          className="traekkr-popup-close"
-          aria-label="Close"
-        >
-          ×
-        </Link>
-
-        <header className="traekkr-popup-header">
-          <h1 className="traekkr-popup-title">{doc.title}</h1>
-          <div className="traekkr-popup-meta">
-            <time dateTime={doc.publishedDate}>
-              {formatDate(doc.publishedDate)}
-            </time>
-            <span className="traekkr-popup-author">{doc.author}</span>
-          </div>
+    <section className="traekkr-section traekkr-writeup-standalone">
+      <article className="traekkr-writeup-article">
+        <header className="traekkr-writeup-header">
+          <h1 className="traekkr-writeup-title">{doc.title}</h1>
         </header>
 
-        <div className="traekkr-popup-body">
+        <div className="traekkr-writeup-body">
           {hasLexicalDescription ? (
-            <RenderLexical content={doc.description as Parameters<typeof RenderLexical>[0]['content']} />
+            <RenderLexical
+              content={
+                doc.description as Parameters<
+                  typeof RenderLexical
+                >[0]['content']
+              }
+            />
           ) : (
-            <p className="traekkr-popup-description">
+            <p className="traekkr-writeup-description">
               {typeof doc.description === 'string' ? doc.description : ''}
             </p>
           )}
         </div>
 
-        <footer className="traekkr-popup-footer">
-          <ShareButtons
-            url={`/write-ups/${doc.slug}`}
-            title={doc.title}
-          />
+        <footer className="traekkr-writeup-footer">
+          <div className="traekkr-writeup-footer-inner">
+            <ShareButtons url={`/write-ups/${doc.slug}`} title={doc.title} />
+            <div className="traekkr-writeup-meta traekkr-writeup-meta-footer">
+              <time dateTime={doc.publishedDate}>
+                {formatDate(doc.publishedDate)}
+              </time>
+              <span className="traekkr-writeup-author">{doc.author}</span>
+            </div>
+          </div>
         </footer>
       </article>
-    </div>
+    </section>
   )
 }
+
