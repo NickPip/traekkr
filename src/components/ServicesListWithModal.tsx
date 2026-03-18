@@ -56,10 +56,7 @@ export function ServicesListWithModal({
 
       <div className="traekkr-services-list">
         {services.length === 0 ? (
-          <p className="traekkr-services-empty">
-            No services yet. Add them in the{' '}
-            <Link href="/admin/collections/services">admin</Link>.
-          </p>
+          <div className="traekkr-services-empty" aria-live="polite" />
         ) : (
           services.map((service) => (
             <article

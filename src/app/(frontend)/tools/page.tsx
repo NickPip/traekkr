@@ -52,10 +52,7 @@ export default async function ToolsListPage() {
 
       <div className="traekkr-tools-list">
         {tools.length === 0 ? (
-          <p className="traekkr-services-empty">
-            No tools yet. Add them in the{' '}
-            <Link href="/admin/collections/tools">admin</Link>.
-          </p>
+          <div className="traekkr-services-empty" aria-live="polite" />
         ) : (
           tools.map((item) => (
             <Link
