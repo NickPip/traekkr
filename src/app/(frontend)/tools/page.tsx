@@ -39,7 +39,7 @@ export default async function ToolsListPage() {
   }
 
   return (
-    <section className="traekkr-section traekkr-tools">
+    <section className="traekkr-section traekkr-writeups">
       <nav className="traekkr-services-nav" aria-label="Tools">
         <h1 className="traekkr-services-title">Tools</h1>
         <div className="traekkr-services-actions">
@@ -50,7 +50,7 @@ export default async function ToolsListPage() {
         </div>
       </nav>
 
-      <div className="traekkr-tools-list">
+      <div className="traekkr-writeups-list">
         {tools.length === 0 ? (
           <div className="traekkr-services-empty" aria-live="polite" />
         ) : (
@@ -58,14 +58,14 @@ export default async function ToolsListPage() {
             <Link
               key={item.id}
               href={`/tools/${item.slug}`}
-              className="traekkr-tool-block"
+              className="traekkr-writeup-block"
             >
-              <h2 className="traekkr-tool-title">{item.title}</h2>
-              <div className="traekkr-tool-meta">
-                <span className="traekkr-tool-date">
+              <h2 className="traekkr-writeup-title">{item.title}</h2>
+              <div className="traekkr-writeup-meta">
+                <span className="traekkr-writeup-date">
                   {formatDate(item.publishedDate)}
                 </span>
-                <span className="traekkr-tool-link" title={item.link}>
+                <span className="traekkr-writeup-author" title={item.link}>
                   {(() => {
                     try {
                       return new URL(item.link).hostname

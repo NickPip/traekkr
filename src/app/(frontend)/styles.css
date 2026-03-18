@@ -1277,7 +1277,8 @@ button {
 
   /* Section pages: less padding, full width */
   .traekkr-section {
-    padding: 1.5rem 1rem;
+    /* Extra top space so page titles don't overlap the brand header */
+    padding: 5.25rem 1rem 1.5rem;
     max-width: none;
     width: 100%;
   }
