@@ -21,11 +21,11 @@ interface WriteUpDoc {
 }
 
 interface WriteUpsListPageProps {
-  searchParams?: { slug?: string }
+  searchParams?: Promise<{ slug?: string }>
 }
 
 export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
-  const { searchParams } = props
+  const searchParams = await props.searchParams
   const activeSlug = searchParams?.slug
 
   const payload = await getPayload({ config: await configPromise })

@@ -438,6 +438,65 @@ button {
   background: rgba(25, 25, 25, 1);
 }
 
+/* Services page – entrance animation */
+.traekkr-services .traekkr-services-nav,
+.traekkr-services-list .traekkr-service-block,
+.traekkr-services-list .traekkr-services-empty {
+  will-change: transform, opacity;
+  animation: traekkr-services-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.traekkr-services .traekkr-services-nav {
+  animation-delay: 60ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(1) {
+  animation-delay: 130ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(2) {
+  animation-delay: 190ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(3) {
+  animation-delay: 250ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(4) {
+  animation-delay: 310ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(5) {
+  animation-delay: 370ms;
+}
+
+.traekkr-services-list .traekkr-service-block:nth-of-type(n + 6) {
+  animation-delay: 430ms;
+}
+
+.traekkr-services-list .traekkr-services-empty {
+  animation-delay: 130ms;
+}
+
+@keyframes traekkr-services-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traekkr-services .traekkr-services-nav,
+  .traekkr-services-list .traekkr-service-block,
+  .traekkr-services-list .traekkr-services-empty {
+    animation: none;
+  }
+}
+
 /* Service modal */
 .traekkr-modal-overlay {
   position: fixed;
@@ -658,6 +717,65 @@ button {
   white-space: nowrap;
 }
 
+/* Write-Ups & Tools list – entrance animation */
+.traekkr-writeups .traekkr-services-nav,
+.traekkr-writeups-list .traekkr-writeup-block,
+.traekkr-writeups-list .traekkr-services-empty {
+  will-change: transform, opacity;
+  animation: traekkr-writeups-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.traekkr-writeups .traekkr-services-nav {
+  animation-delay: 60ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(1) {
+  animation-delay: 130ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(2) {
+  animation-delay: 190ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(3) {
+  animation-delay: 250ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(4) {
+  animation-delay: 310ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(5) {
+  animation-delay: 370ms;
+}
+
+.traekkr-writeups-list .traekkr-writeup-block:nth-of-type(n + 6) {
+  animation-delay: 430ms;
+}
+
+.traekkr-writeups-list .traekkr-services-empty {
+  animation-delay: 130ms;
+}
+
+@keyframes traekkr-writeups-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traekkr-writeups .traekkr-services-nav,
+  .traekkr-writeups-list .traekkr-writeup-block,
+  .traekkr-writeups-list .traekkr-services-empty {
+    animation: none;
+  }
+}
+
 /* Tools list */
 /* Fixed width for tools list (change 48rem to adjust) */
 .traekkr-tools {
@@ -735,6 +853,20 @@ button {
   max-width: 100%;
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.traekkr-contact .traekkr-services-nav,
+.traekkr-contact-card {
+  will-change: transform, opacity;
+  animation: traekkr-contact-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.traekkr-contact .traekkr-services-nav {
+  animation-delay: 60ms;
+}
+
+.traekkr-contact-card {
+  animation-delay: 160ms;
 }
 
 .traekkr-contact .traekkr-services-nav {
@@ -854,12 +986,77 @@ button {
   outline-offset: 3px;
 }
 
+@keyframes traekkr-contact-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traekkr-contact .traekkr-services-nav,
+  .traekkr-contact-card {
+    animation: none;
+  }
+}
+
 /* About page – compact so it fits in viewport at 100% */
 .traekkr-about {
   width: 48rem;
   max-width: 100%;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.traekkr-about .traekkr-services-nav,
+.traekkr-about-card,
+.traekkr-about-cta {
+  will-change: transform, opacity;
+  animation: traekkr-about-in 560ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.traekkr-about .traekkr-services-nav {
+  animation-delay: 60ms;
+}
+
+.traekkr-about-list .traekkr-about-card:nth-of-type(1) {
+  animation-delay: 130ms;
+}
+
+.traekkr-about-list .traekkr-about-card:nth-of-type(2) {
+  animation-delay: 190ms;
+}
+
+.traekkr-about-list .traekkr-about-card:nth-of-type(3) {
+  animation-delay: 250ms;
+}
+
+.traekkr-about-cta {
+  animation-delay: 320ms;
+}
+
+@keyframes traekkr-about-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traekkr-about .traekkr-services-nav,
+  .traekkr-about-card,
+  .traekkr-about-cta {
+    animation: none;
+  }
 }
 
 .traekkr-about .traekkr-services-nav {

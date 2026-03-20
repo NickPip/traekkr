@@ -11,6 +11,7 @@ import { Services } from './collections/Services'
 import { Orders } from './collections/Orders'
 import { Tools } from './collections/Tools'
 import { WriteUps } from './collections/WriteUps'
+import { About } from './globals/About'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,6 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Services, Orders, WriteUps, Tools],
+  globals: [About],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
