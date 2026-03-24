@@ -113,10 +113,6 @@ export function ServicesListWithModal({
                 <p className="traekkr-modal-description">
                   {openService.description?.trim() || '—'}
                 </p>
-                <p className="traekkr-service-target-label">Target:</p>
-                <p className="traekkr-service-target-list">
-                  {openService.targetItems?.map((t) => t.item).join(', ') ?? '—'}
-                </p>
                 <button
                   type="button"
                   className="traekkr-modal-order-btn"
