@@ -19,29 +19,29 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
-    "@payloadcms/next": "3.77.0",
-    "@payloadcms/richtext-lexical": "3.77.0",
-    "@payloadcms/ui": "3.77.0",
+    "@payloadcms/db-sqlite": "3.80.0",
+    "@payloadcms/next": "3.80.0",
+    "@payloadcms/richtext-lexical": "3.80.0",
+    "@payloadcms/ui": "3.80.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
-    "next": "15.5.7",
-    "payload": "3.77.0",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "sharp": "0.34.2",
-    "@payloadcms/db-sqlite": "3.77.0"
+    "next": "16.2.1",
+    "payload": "3.80.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sharp": "0.34.5"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
     "@playwright/test": "1.58.2",
     "@testing-library/react": "16.3.0",
     "@types/node": "22.19.9",
     "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "4.5.2",
-    "@eslint/eslintrc": "^3.2.0",
     "eslint": "^9.16.0",
-    "eslint-config-next": "15.5.7",
+    "eslint-config-next": "16.2.1",
     "jsdom": "28.0.0",
     "prettier": "^3.4.2",
     "tsx": "4.21.0",
@@ -53,7 +53,15 @@
     "node": "^18.20.2 || >=20.9.0",
     "pnpm": "^9 || ^10"
   },
+  "optionalDependencies": {
+    "@img/sharp-linux-x64": "0.34.5",
+    "@libsql/linux-x64-gnu": "*"
+  },
   "pnpm": {
+    "supportedArchitectures": {
+      "os": ["darwin", "linux"],
+      "cpu": ["x64", "arm64"]
+    },
     "onlyBuiltDependencies": [
       "sharp",
       "esbuild",

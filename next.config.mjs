@@ -3,14 +3,18 @@ import { withPayload } from '@payloadcms/next/withPayload'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  webpack: (webpackConfig) => {
-    webpackConfig.resolve.extensionAlias = {
+  experimental: {
+    extensionAlias: {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
       '.mjs': ['.mts', '.mjs'],
-    }
-
-    return webpackConfig
+    },
+  },
+  outputFileTracingIncludes: {
+    '/**': [
+      './node_modules/@img/sharp-linux-x64/**/*',
+      './node_modules/@libsql/linux-x64-gnu/**/*',
+    ],
   },
 }
 
