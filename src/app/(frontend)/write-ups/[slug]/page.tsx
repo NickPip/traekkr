@@ -5,6 +5,10 @@ import React from 'react'
 
 import { RenderLexical } from '@/components/RenderLexical'
 import { ShareButtons } from '@/components/ShareButtons'
+import {
+  formatPublishedDate,
+  publishedDateFormatLong,
+} from '@/lib/format-published-date'
 
 import type { WriteUp } from '@/payload-types'
 
@@ -31,18 +35,10 @@ export default async function WriteUpPage(props: WriteUpPageProps) {
 
   if (!doc) notFound()
 
-  const formatDate = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr)
-      return d.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    } catch {
-      return dateStr
-    }
-  }
+  const footerDateLabel = formatPublishedDate(
+    doc.publishedDate,
+    publishedDateFormatLong,
+  )
 
   const hasLexicalDescription =
     doc.description &&
@@ -54,7 +50,7 @@ export default async function WriteUpPage(props: WriteUpPageProps) {
     <section className="traekkr-section traekkr-writeup-standalone">
       <article className="traekkr-writeup-article">
         <header className="traekkr-writeup-header">
-          <h1 className="traekkr-writeup-title">{doc.title}</h1>
+          <h1 className="traekkr-writeup-title">{doc.title ?? ''}</h1>
         </header>
 
         <div className="traekkr-writeup-body">
@@ -75,12 +71,17 @@ export default async function WriteUpPage(props: WriteUpPageProps) {
 
         <footer className="traekkr-writeup-footer">
           <div className="traekkr-writeup-footer-inner">
-            <ShareButtons url={`/write-ups/${doc.slug}`} title={doc.title} />
+            <ShareButtons
+              url={`/write-ups/${doc.slug ?? ''}`}
+              title={doc.title ?? ''}
+            />
             <div className="traekkr-writeup-meta traekkr-writeup-meta-footer">
-              <time dateTime={doc.publishedDate}>
-                {formatDate(doc.publishedDate)}
-              </time>
-              <span className="traekkr-writeup-author">{doc.author}</span>
+              {footerDateLabel ? (
+                <time dateTime={doc.publishedDate ?? ''}>
+                  {footerDateLabel}
+                </time>
+              ) : null}
+              <span className="traekkr-writeup-author">{doc.author ?? ''}</span>
             </div>
           </div>
         </footer>

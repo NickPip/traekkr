@@ -3,17 +3,22 @@ import { getPayload } from 'payload'
 import Link from 'next/link'
 import React from 'react'
 
+import {
+  formatPublishedDate,
+  publishedDateFormatLong,
+} from '@/lib/format-published-date'
+
 import '../../styles.css'
 
 export const dynamic = 'force-dynamic'
 
 type ToolDoc = {
   id: string
-  title: string
-  slug: string
-  publishedDate: string
-  link: string
-  description: string
+  title?: string | null
+  slug?: string | null
+  publishedDate?: string | null
+  link?: string | null
+  description?: string | null
 }
 
 export default async function ToolPage({
@@ -38,22 +43,14 @@ export default async function ToolPage({
   // doc is defined here (notFound() throws)
   const pageDoc = doc as ToolDoc
 
-  const formatDate = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr)
-      return d.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    } catch {
-      return dateStr
-    }
-  }
+  const metaDateLabel = formatPublishedDate(
+    pageDoc.publishedDate,
+    publishedDateFormatLong,
+  )
 
-  let linkHostname = pageDoc.link
+  let linkHostname = pageDoc.link ?? ''
   try {
-    linkHostname = new URL(pageDoc.link).hostname
+    if (pageDoc.link) linkHostname = new URL(pageDoc.link).hostname
   } catch {
     // leave as-is if invalid URL
   }
@@ -70,24 +67,28 @@ export default async function ToolPage({
         </Link>
 
         <header className="traekkr-popup-header">
-          <h1 className="traekkr-popup-title">{pageDoc.title}</h1>
+          <h1 className="traekkr-popup-title">{pageDoc.title ?? ''}</h1>
           <div className="traekkr-popup-meta">
-            <time dateTime={pageDoc.publishedDate}>
-              {formatDate(pageDoc.publishedDate)}
-            </time>
+            {metaDateLabel ? (
+              <time dateTime={pageDoc.publishedDate ?? ''}>
+                {metaDateLabel}
+              </time>
+            ) : null}
           </div>
         </header>
 
         <div className="traekkr-popup-body">
-          <p className="traekkr-popup-description">{pageDoc.description}</p>
-          <a
-            href={pageDoc.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="traekkr-popup-link"
-          >
-            Open tool → {linkHostname}
-          </a>
+          <p className="traekkr-popup-description">{pageDoc.description ?? ''}</p>
+          {pageDoc.link ? (
+            <a
+              href={pageDoc.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="traekkr-popup-link"
+            >
+              Open tool → {linkHostname}
+            </a>
+          ) : null}
         </div>
       </article>
     </div>

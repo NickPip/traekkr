@@ -158,7 +158,7 @@ export interface User {
  */
 export interface Media {
   id: string;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -181,7 +181,7 @@ export interface Service {
    * Lower numbers appear first on the site. Edit these to reorder.
    */
   sortOrder?: number | null;
-  title: string;
+  title?: string | null;
   /**
    * Shown in the popup when user clicks the service.
    */
@@ -191,7 +191,7 @@ export interface Service {
    */
   targetItems?:
     | {
-        item: string;
+        item?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -204,17 +204,17 @@ export interface Service {
  */
 export interface WriteUp {
   id: string;
-  title: string;
+  title?: string | null;
   /**
    * URL path, e.g. "my-first-write-up" → /write-ups/my-first-write-up
    */
-  slug: string;
-  publishedDate: string;
-  author: string;
+  slug?: string | null;
+  publishedDate?: string | null;
+  author?: string | null;
   /**
    * Full content shown when user opens the write-up. Use the block menu (e.g. type / or use +) to add code blocks.
    */
-  description: {
+  description?: {
     root: {
       type: string;
       children: {
@@ -228,7 +228,7 @@ export interface WriteUp {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -238,20 +238,20 @@ export interface WriteUp {
  */
 export interface Tool {
   id: string;
-  title: string;
+  title?: string | null;
   /**
    * URL path, e.g. "my-tool" → /tools/my-tool
    */
-  slug: string;
-  publishedDate: string;
+  slug?: string | null;
+  publishedDate?: string | null;
   /**
    * URL to the tool (e.g. https://example.com/tool). Opens when user clicks "Open tool".
    */
-  link: string;
+  link?: string | null;
   /**
    * Full content shown when user opens the tool page.
    */
-  description: string;
+  description?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -473,32 +473,34 @@ export interface About {
   /**
    * Each section appears as a card on the About page.
    */
-  sections: {
-    /**
-     * e.g. "Who we are", "What we do", "Why us?"
-     */
-    heading: string;
-    content: {
-      root: {
-        type: string;
-        children: {
-          type: any;
-          version: number;
+  sections?:
+    | {
+        /**
+         * e.g. "Who we are", "What we do", "Why us?"
+         */
+        heading?: string | null;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
           [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    id?: string | null;
-  }[];
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * Text above the contact button (e.g. "Prefer a face-to-face meeting? Send us a message...").
    */
-  ctaText: {
+  ctaText?: {
     root: {
       type: string;
       children: {
@@ -512,12 +514,12 @@ export interface About {
       version: number;
     };
     [k: string]: unknown;
-  };
-  ctaButtonText: string;
+  } | null;
+  ctaButtonText?: string | null;
   /**
    * URL for the contact button (e.g. /contact).
    */
-  ctaButtonHref: string;
+  ctaButtonHref?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

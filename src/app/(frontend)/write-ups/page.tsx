@@ -6,6 +6,11 @@ import React from 'react'
 import { BackButton } from '@/components/BackButton'
 import { RenderLexical } from '@/components/RenderLexical'
 import { ShareButtons } from '@/components/ShareButtons'
+import {
+  formatPublishedDate,
+  publishedDateFormatLong,
+  publishedDateFormatShort,
+} from '@/lib/format-published-date'
 
 import '../styles.css'
 
@@ -13,10 +18,10 @@ export const dynamic = 'force-dynamic'
 
 interface WriteUpDoc {
   id: string
-  title: string
-  slug: string
-  publishedDate: string
-  author: string
+  title?: string | null
+  slug?: string | null
+  publishedDate?: string | null
+  author?: string | null
   description?: unknown
 }
 
@@ -39,31 +44,9 @@ export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
     ? writeUps.find((item) => item.slug === activeSlug)
     : undefined
 
-  const formatDateShort = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr)
-      return d.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      })
-    } catch {
-      return dateStr
-    }
-  }
-
-  const formatDateLong = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr)
-      return d.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    } catch {
-      return dateStr
-    }
-  }
+  const activeDateLabel = activeDoc
+    ? formatPublishedDate(activeDoc.publishedDate, publishedDateFormatLong)
+    : ''
 
   const hasLexicalDescription =
     activeDoc &&
@@ -92,12 +75,15 @@ export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
             href={{ pathname: '/write-ups', query: { slug: item.slug } }}
             className="traekkr-writeup-block"
           >
-            <h2 className="traekkr-writeup-title">{item.title}</h2>
+            <h2 className="traekkr-writeup-title">{item.title ?? ''}</h2>
             <div className="traekkr-writeup-meta">
               <span className="traekkr-writeup-date">
-                {formatDateShort(item.publishedDate)}
+                {formatPublishedDate(
+                  item.publishedDate,
+                  publishedDateFormatShort,
+                )}
               </span>
-              <span className="traekkr-writeup-author">{item.author}</span>
+              <span className="traekkr-writeup-author">{item.author ?? ''}</span>
             </div>
           </Link>
         ))}
@@ -115,12 +101,16 @@ export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
             </Link>
 
             <header className="traekkr-popup-header">
-              <h1 className="traekkr-popup-title">{activeDoc.title}</h1>
+              <h1 className="traekkr-popup-title">{activeDoc.title ?? ''}</h1>
               <div className="traekkr-popup-meta">
-                <time dateTime={activeDoc.publishedDate}>
-                  {formatDateLong(activeDoc.publishedDate)}
-                </time>
-                <span className="traekkr-popup-author">{activeDoc.author}</span>
+                {activeDateLabel ? (
+                  <time dateTime={activeDoc.publishedDate ?? ''}>
+                    {activeDateLabel}
+                  </time>
+                ) : null}
+                <span className="traekkr-popup-author">
+                  {activeDoc.author ?? ''}
+                </span>
               </div>
             </header>
 
@@ -141,8 +131,8 @@ export default async function WriteUpsListPage(props: WriteUpsListPageProps) {
 
             <footer className="traekkr-popup-footer">
               <ShareButtons
-                url={`/write-ups/${activeDoc.slug}`}
-                title={activeDoc.title}
+                url={`/write-ups/${activeDoc.slug ?? ''}`}
+                title={activeDoc.title ?? ''}
               />
             </footer>
           </article>

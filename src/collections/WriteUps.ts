@@ -14,13 +14,11 @@ export const WriteUps: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
       label: 'Heading',
     },
     {
       name: 'slug',
       type: 'text',
-      required: true,
       unique: true,
       label: 'Slug',
       admin: {
@@ -30,7 +28,6 @@ export const WriteUps: CollectionConfig = {
     {
       name: 'publishedDate',
       type: 'date',
-      required: true,
       label: 'Date',
       admin: {
         date: {
@@ -41,13 +38,11 @@ export const WriteUps: CollectionConfig = {
     {
       name: 'author',
       type: 'text',
-      required: true,
       label: 'Author',
     },
     {
       name: 'description',
       type: 'richText',
-      required: true,
       label: 'Description',
       admin: {
         description:

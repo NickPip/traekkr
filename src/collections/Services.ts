@@ -39,7 +39,6 @@ export const Services: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
       label: 'Service title',
     },
     {
@@ -58,7 +57,6 @@ export const Services: CollectionConfig = {
         {
           name: 'item',
           type: 'text',
-          required: true,
           label: 'Item',
         },
       ],

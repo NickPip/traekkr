@@ -4,6 +4,10 @@ import Link from 'next/link'
 import React from 'react'
 
 import { BackButton } from '@/components/BackButton'
+import {
+  formatPublishedDate,
+  publishedDateFormatShort,
+} from '@/lib/format-published-date'
 
 import '../styles.css'
 
@@ -11,10 +15,10 @@ export const dynamic = 'force-dynamic'
 
 type ToolDoc = {
   id: string
-  title: string
-  slug: string
-  publishedDate: string
-  link: string
+  title?: string | null
+  slug?: string | null
+  publishedDate?: string | null
+  link?: string | null
 }
 
 export default async function ToolsListPage() {
@@ -24,19 +28,6 @@ export default async function ToolsListPage() {
     sort: '-publishedDate',
   })
   const tools = (result.docs ?? []) as ToolDoc[]
-
-  const formatDate = (dateStr: string) => {
-    try {
-      const d = new Date(dateStr)
-      return d.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      })
-    } catch {
-      return dateStr
-    }
-  }
 
   return (
     <section className="traekkr-section traekkr-writeups">
@@ -57,17 +48,21 @@ export default async function ToolsListPage() {
           tools.map((item) => (
             <Link
               key={item.id}
-              href={`/tools/${item.slug}`}
+              href={`/tools/${item.slug ?? ''}`}
               className="traekkr-writeup-block"
             >
-              <h2 className="traekkr-writeup-title">{item.title}</h2>
+              <h2 className="traekkr-writeup-title">{item.title ?? ''}</h2>
               <div className="traekkr-writeup-meta">
                 <span className="traekkr-writeup-date">
-                  {formatDate(item.publishedDate)}
+                  {formatPublishedDate(
+                    item.publishedDate,
+                    publishedDateFormatShort,
+                  )}
                 </span>
-                <span className="traekkr-writeup-author" title={item.link}>
+                <span className="traekkr-writeup-author" title={item.link ?? ''}>
                   {(() => {
                     try {
+                      if (!item.link) return 'Link'
                       return new URL(item.link).hostname
                     } catch {
                       return 'Link'

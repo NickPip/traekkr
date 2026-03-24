@@ -13,13 +13,11 @@ export const Tools: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
       label: 'Heading',
     },
     {
       name: 'slug',
       type: 'text',
-      required: true,
       unique: true,
       label: 'Slug',
       admin: {
@@ -29,7 +27,6 @@ export const Tools: CollectionConfig = {
     {
       name: 'publishedDate',
       type: 'date',
-      required: true,
       label: 'Date',
       admin: {
         date: {
@@ -40,7 +37,6 @@ export const Tools: CollectionConfig = {
     {
       name: 'link',
       type: 'text',
-      required: true,
       label: 'Link',
       admin: {
         description: 'URL to the tool (e.g. https://example.com/tool). Opens when user clicks "Open tool".',
@@ -49,7 +45,6 @@ export const Tools: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
-      required: true,
       label: 'Description',
       admin: {
         description: 'Full content shown when user opens the tool page.',
