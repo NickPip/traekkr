@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -30,12 +29,11 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
   return (
     <div className={`traekkr${isHome ? ' traekkr-animate-in' : ''}`}>
       <div className="traekkr-bg" aria-hidden>
-        <Image
+        <img
           src="/background_new.webp"
           alt=""
-          fill
-          priority
-          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
           className="traekkr-bg-image"
         />
       </div>
