@@ -497,15 +497,16 @@ button {
   }
 }
 
-/* Service modal */
+/* Service modal (same top offset as write-up / tools popup – clears Traekkr header) */
 .traekkr-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 100;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 2rem;
+  padding: 4.75rem 2rem 2rem;
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
 }
@@ -514,7 +515,7 @@ button {
   position: relative;
   width: 100%;
   max-width: 28rem;
-  max-height: 90vh;
+  max-height: calc(100vh - 7rem);
   overflow-y: auto;
   padding: 2rem;
   background: rgba(18, 18, 18, 0.98);
@@ -1144,9 +1145,11 @@ button {
   inset: 0;
   z-index: 100;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 2rem;
+  /* Top padding clears the Traekkr header so the modal sits below the brand row */
+  padding: 4.75rem 2rem 2rem;
+  overflow-y: auto;
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(6px);
 }
@@ -1155,7 +1158,8 @@ button {
   position: relative;
   width: 100%;
   max-width: 48rem;
-  max-height: 95vh;
+  /* Fits below overlay top/bottom padding (see .traekkr-popup-overlay) */
+  max-height: calc(100vh - 7rem);
   overflow-y: auto;
   padding: 2rem;
   background: rgba(18, 18, 18, 0.98);
@@ -1526,5 +1530,19 @@ button {
   .traekkr-writeup-title,
   .traekkr-tool-title {
     font-size: 1.05rem;
+  }
+
+  /* Write-up & service modals: extra top offset so they clear the logo on narrow screens */
+  .traekkr-popup-overlay,
+  .traekkr-modal-overlay {
+    padding: 5.75rem 1rem 1.5rem;
+  }
+
+  .traekkr-popup {
+    max-height: calc(100vh - 8rem);
+  }
+
+  .traekkr-modal {
+    max-height: calc(100vh - 8rem);
   }
 }
