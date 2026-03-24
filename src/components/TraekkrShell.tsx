@@ -59,16 +59,6 @@ export function TraekkrShell({ children }: { children: React.ReactNode }) {
         </nav>
       )}
 
-      {isHome && (
-        <a
-          href="#"
-          className="traekkr-bottom-n"
-          aria-label="N"
-        >
-          N
-        </a>
-      )}
-
       {children}
     </div>
   )

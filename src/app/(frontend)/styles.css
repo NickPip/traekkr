@@ -165,52 +165,16 @@ button {
   }
 }
 
-.traekkr-animate-in .traekkr-bottom-n {
-  opacity: 0;
-  animation: traekkr-n-in 0.4s ease-out 1s forwards;
-}
-
-@keyframes traekkr-n-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 }
 
 /* When reduced motion: show content immediately */
 @media (prefers-reduced-motion: reduce) {
   .traekkr-animate-in .traekkr-logo,
   .traekkr-animate-in .traekkr-nav-letter,
-  .traekkr-animate-in .traekkr-nav-btn,
-  .traekkr-animate-in .traekkr-bottom-n {
+  .traekkr-animate-in .traekkr-nav-btn {
     opacity: 1;
     animation: none;
   }
-}
-
-/* Bottom-left N button (landing only) */
-.traekkr-bottom-n {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: #000;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.traekkr-bottom-n:hover {
-  background: rgba(25, 25, 25, 1);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Nav: grid so each row has same height (letter + label paired) */
@@ -1462,11 +1426,6 @@ button {
   .traekkr-nav-btn {
     padding: 0.35rem 0.75rem;
     font-size: 1.35rem;
-  }
-
-  .traekkr-bottom-n {
-    bottom: 1.5rem;
-    left: 1.25rem;
   }
 
   .traekkr-content-card {
