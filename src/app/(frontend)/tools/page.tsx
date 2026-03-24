@@ -21,6 +21,16 @@ type ToolDoc = {
   link?: string | null
 }
 
+function getToolLinkHostname(link: string | null | undefined): string | null {
+  const trimmed = link?.trim()
+  if (!trimmed) return null
+  try {
+    return new URL(trimmed).hostname
+  } catch {
+    return null
+  }
+}
+
 export default async function ToolsListPage() {
   const payload = await getPayload({ config: await configPromise })
   const result = await payload.find({
@@ -45,33 +55,34 @@ export default async function ToolsListPage() {
         {tools.length === 0 ? (
           <div className="traekkr-services-empty" aria-live="polite" />
         ) : (
-          tools.map((item) => (
-            <Link
-              key={item.id}
-              href={`/tools/${item.slug ?? ''}`}
-              className="traekkr-writeup-block"
-            >
-              <h2 className="traekkr-writeup-title">{item.title ?? ''}</h2>
-              <div className="traekkr-writeup-meta">
-                <span className="traekkr-writeup-date">
-                  {formatPublishedDate(
-                    item.publishedDate,
-                    publishedDateFormatShort,
-                  )}
-                </span>
-                <span className="traekkr-writeup-author" title={item.link ?? ''}>
-                  {(() => {
-                    try {
-                      if (!item.link) return 'Link'
-                      return new URL(item.link).hostname
-                    } catch {
-                      return 'Link'
-                    }
-                  })()}
-                </span>
-              </div>
-            </Link>
-          ))
+          tools.map((item) => {
+            const linkHostname = getToolLinkHostname(item.link)
+            return (
+              <Link
+                key={item.id}
+                href={`/tools/${item.slug ?? ''}`}
+                className="traekkr-writeup-block"
+              >
+                <h2 className="traekkr-writeup-title">{item.title ?? ''}</h2>
+                <div className="traekkr-writeup-meta">
+                  <span className="traekkr-writeup-date">
+                    {formatPublishedDate(
+                      item.publishedDate,
+                      publishedDateFormatShort,
+                    )}
+                  </span>
+                  {linkHostname ? (
+                    <span
+                      className="traekkr-writeup-author"
+                      title={item.link ?? undefined}
+                    >
+                      {linkHostname}
+                    </span>
+                  ) : null}
+                </div>
+              </Link>
+            )
+          })
         )}
       </div>
     </section>
