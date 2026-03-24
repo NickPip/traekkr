@@ -15,14 +15,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          href="/background_new.webp"
-          as="image"
-          type="image/webp"
-        />
-      </head>
       <body>
         <main>
           <TraekkrShell>{children}</TraekkrShell>
