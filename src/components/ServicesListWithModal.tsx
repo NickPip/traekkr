@@ -73,7 +73,7 @@ export function ServicesListWithModal({
               tabIndex={0}
             >
               <h2 className="traekkr-service-title">{service.title}</h2>
-              <p className="traekkr-service-target-label">Target</p>
+              <p className="traekkr-service-target-label">Target:</p>
               <p className="traekkr-service-target-list">
                 {service.targetItems?.map((t) => t.item).join(', ') ?? '—'}
               </p>
@@ -113,7 +113,7 @@ export function ServicesListWithModal({
                 <p className="traekkr-modal-description">
                   {openService.description?.trim() || '—'}
                 </p>
-                <p className="traekkr-service-target-label">Target</p>
+                <p className="traekkr-service-target-label">Target:</p>
                 <p className="traekkr-service-target-list">
                   {openService.targetItems?.map((t) => t.item).join(', ') ?? '—'}
                 </p>

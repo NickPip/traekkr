@@ -390,17 +390,25 @@ button {
   color: #fff;
 }
 
-.traekkr-service-target-label {
+.traekkr-section .traekkr-service-target-label {
   margin: 0 0 0.25rem;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: #9ca3af;
 }
 
-.traekkr-service-target-list {
+/* Target line — main list vs modal use different sizes (both beat `.traekkr-section p`) */
+.traekkr-section .traekkr-services-list .traekkr-service-target-list {
   margin: 0.75rem 0 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 1.3rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.traekkr-section .traekkr-modal .traekkr-service-target-list {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.75);
 }
 
