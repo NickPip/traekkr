@@ -23,6 +23,7 @@
     "@payloadcms/next": "3.80.0",
     "@payloadcms/richtext-lexical": "3.80.0",
     "@payloadcms/ui": "3.80.0",
+    "@swc/helpers": "^0.5.19",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
     "graphql": "^16.8.1",
@@ -59,8 +60,14 @@
   },
   "pnpm": {
     "supportedArchitectures": {
-      "os": ["darwin", "linux"],
-      "cpu": ["x64", "arm64"]
+      "os": [
+        "darwin",
+        "linux"
+      ],
+      "cpu": [
+        "x64",
+        "arm64"
+      ]
     },
     "onlyBuiltDependencies": [
       "sharp",
