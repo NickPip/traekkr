@@ -179,6 +179,10 @@ export interface Media {
  */
 export interface Service {
   id: string;
+  /**
+   * Lower numbers appear first on the site. Edit these to reorder.
+   */
+  sortOrder?: number | null;
   title: string;
   /**
    * Shown in the popup when user clicks the service.
@@ -401,6 +405,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
+  sortOrder?: T;
   title?: T;
   description?: T;
   targetItems?:

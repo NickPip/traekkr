@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic'
 type ServiceDoc = {
   id: string
   title: string
+  sortOrder?: number | null
   description?: string | null
   targetItems?: { item: string }[] | null
 }
@@ -19,7 +20,7 @@ export default async function ServicesPage() {
   const payload = await getPayload({ config: await configPromise })
   const result = await payload.find({
     collection: 'services',
-    sort: 'createdAt',
+    sort: 'sortOrder',
   })
   const services = (result.docs ?? []) as ServiceDoc[]
 
