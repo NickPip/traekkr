@@ -1,5 +1,3 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
 import { NextResponse } from 'next/server'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
@@ -17,40 +15,41 @@ export async function POST(request: Request) {
       )
     }
 
-    const payload = await getPayload({ config: await configPromise })
-    await payload.create({
-      collection: 'orders',
-      data: {
-        name: String(name).trim(),
-        email: String(email).trim(),
-        message: message ? String(message).trim() : '',
-        serviceTitle: String(serviceTitle).trim(),
-      },
-    })
+    if (!RESEND_API_KEY || !ORDER_TO_EMAIL) {
+      console.error(
+        'Order API: set RESEND_API_KEY and ORDER_TO_EMAIL (or ADMIN_EMAIL) to receive orders.'
+      )
+      return NextResponse.json(
+        { error: 'Order submission is not configured.' },
+        { status: 503 }
+      )
+    }
 
-    if (RESEND_API_KEY && ORDER_TO_EMAIL) {
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${RESEND_API_KEY}`,
-        },
-        body: JSON.stringify({
-          from: 'Traekkr <onboarding@resend.dev>',
-          to: [ORDER_TO_EMAIL],
-          subject: `Order: ${serviceTitle} from ${name}`,
-          html: `
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: 'Traekkr <onboarding@resend.dev>',
+        to: [ORDER_TO_EMAIL],
+        subject: `Order: ${serviceTitle} from ${name}`,
+        html: `
             <p><strong>Service:</strong> ${serviceTitle}</p>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
-            ${message ? `<p><strong>Message:</strong></p><p>${message.replace(/\n/g, '<br>')}</p>` : ''}
+            ${message ? `<p><strong>Message:</strong></p><p>${String(message).replace(/\n/g, '<br>')}</p>` : ''}
           `,
-        }),
-      })
-      if (!res.ok) {
-        const err = await res.text()
-        console.error('Resend error:', err)
-      }
+      }),
+    })
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('Resend error:', err)
+      return NextResponse.json(
+        { error: 'Failed to submit order.' },
+        { status: 500 }
+      )
     }
 
     return NextResponse.json({ success: true })

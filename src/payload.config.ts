@@ -8,7 +8,6 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Services } from './collections/Services'
-import { Orders } from './collections/Orders'
 import { Tools } from './collections/Tools'
 import { WriteUps } from './collections/WriteUps'
 import { About } from './globals/About'
@@ -23,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Services, Orders, WriteUps, Tools],
+  collections: [Users, Media, Services, WriteUps, Tools],
   globals: [About],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

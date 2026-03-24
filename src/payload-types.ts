@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     media: Media;
     services: Service;
-    orders: Order;
     'write-ups': WriteUp;
     tools: Tool;
     'payload-kv': PayloadKv;
@@ -83,7 +82,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
-    orders: OrdersSelect<false> | OrdersSelect<true>;
     'write-ups': WriteUpsSelect<false> | WriteUpsSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -202,19 +200,6 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders".
- */
-export interface Order {
-  id: string;
-  name: string;
-  email: string;
-  message?: string | null;
-  serviceTitle: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "write-ups".
  */
 export interface WriteUp {
@@ -305,10 +290,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: string | Service;
-      } | null)
-    | ({
-        relationTo: 'orders';
-        value: string | Order;
       } | null)
     | ({
         relationTo: 'write-ups';
@@ -414,18 +395,6 @@ export interface ServicesSelect<T extends boolean = true> {
         item?: T;
         id?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "orders_select".
- */
-export interface OrdersSelect<T extends boolean = true> {
-  name?: T;
-  email?: T;
-  message?: T;
-  serviceTitle?: T;
   updatedAt?: T;
   createdAt?: T;
 }
