@@ -335,6 +335,7 @@ button {
   color: #fff;
   text-align: left;
   flex-shrink: 0;
+  transform: translateY(10px);
 }
 
 .traekkr-services-actions {
