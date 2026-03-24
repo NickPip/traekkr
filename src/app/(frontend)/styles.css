@@ -426,10 +426,21 @@ button {
 .traekkr-service-block-clickable {
   cursor: pointer;
   transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.traekkr-service-block-clickable:hover {
-  background: rgba(25, 25, 25, 1);
+/* Only real pointers (mouse/trackpad) get persistent hover. Touch browsers often
+   keep :hover stuck on the first row or last-tapped item — avoid that gray state. */
+@media (hover: hover) and (pointer: fine) {
+  .traekkr-service-block-clickable:hover {
+    background: rgba(25, 25, 25, 1);
+  }
+}
+
+@media (hover: none) {
+  .traekkr-service-block-clickable:active {
+    background: rgba(25, 25, 25, 1);
+  }
 }
 
 /* Services page – entrance animation */
