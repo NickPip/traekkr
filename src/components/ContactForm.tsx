@@ -116,31 +116,40 @@ export function ContactForm() {
           </select>
         </label>
 
-        {inquiryKind === 'project' ? (
-          <label className="traekkr-contact-label">
-            <span className="traekkr-contact-label-text">Project type</span>
-            <select
-              name="projectType"
-              className="traekkr-contact-input traekkr-contact-select"
-              value={projectType}
-              onChange={(e) => setProjectType(e.target.value)}
-              required
-              aria-label="Project type"
-            >
-              {PROJECT_TYPE_OPTIONS.map((opt) =>
-                opt.value === '' ? (
-                  <option key={opt.value} value="" disabled>
-                    {opt.label}
-                  </option>
-                ) : (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ),
-              )}
-            </select>
-          </label>
-        ) : null}
+        <div
+          className={
+            inquiryKind === 'project'
+              ? 'traekkr-contact-project-reveal traekkr-contact-project-reveal--open'
+              : 'traekkr-contact-project-reveal'
+          }
+          inert={inquiryKind === 'general' ? true : undefined}
+        >
+          <div className="traekkr-contact-project-reveal__inner">
+            <label className="traekkr-contact-label">
+              <span className="traekkr-contact-label-text">Project type</span>
+              <select
+                name="projectType"
+                className="traekkr-contact-input traekkr-contact-select"
+                value={projectType}
+                onChange={(e) => setProjectType(e.target.value)}
+                required={inquiryKind === 'project'}
+                aria-label="Project type"
+              >
+                {PROJECT_TYPE_OPTIONS.map((opt) =>
+                  opt.value === '' ? (
+                    <option key={opt.value} value="" disabled>
+                      {opt.label}
+                    </option>
+                  ) : (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ),
+                )}
+              </select>
+            </label>
+          </div>
+        </div>
 
         <label className="traekkr-contact-label">
           <span className="traekkr-contact-label-text">Name</span>

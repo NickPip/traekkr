@@ -990,6 +990,31 @@ button {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
+.traekkr-contact-project-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.traekkr-contact-project-reveal--open {
+  grid-template-rows: 1fr;
+}
+
+.traekkr-contact-project-reveal__inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(-0.4rem);
+  transition:
+    opacity 0.32s ease,
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.traekkr-contact-project-reveal--open .traekkr-contact-project-reveal__inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .traekkr-contact-form {
   display: flex;
   flex-direction: column;
@@ -1119,6 +1144,16 @@ button {
   .traekkr-contact .traekkr-services-nav,
   .traekkr-contact-card {
     animation: none;
+  }
+
+  .traekkr-contact-project-reveal,
+  .traekkr-contact-project-reveal__inner {
+    transition: none;
+  }
+
+  .traekkr-contact-project-reveal__inner {
+    opacity: 1;
+    transform: none;
   }
 }
 
