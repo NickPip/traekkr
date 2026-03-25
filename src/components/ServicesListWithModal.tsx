@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 import { BackButton } from '@/components/BackButton'
 
+const ORDER_MAIL_TO = 'projects@traekkr.dev'
+
 export type ServiceItem = {
   id: string
   title: string
@@ -19,18 +21,15 @@ export function ServicesListWithModal({
 }) {
   const [openService, setOpenService] = useState<ServiceItem | null>(null)
   const [showForm, setShowForm] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
 
   const closeModal = useCallback(() => {
     setOpenService(null)
     setShowForm(false)
-    setSubmitStatus('idle')
   }, [])
 
   const openModal = useCallback((service: ServiceItem) => {
     setOpenService(service)
     setShowForm(false)
-    setSubmitStatus('idle')
   }, [])
 
   useEffect(() => {
@@ -118,16 +117,12 @@ export function ServicesListWithModal({
                   className="traekkr-modal-order-btn"
                   onClick={() => setShowForm(true)}
                 >
-                  Order service
+                  Request project
                 </button>
               </>
             ) : (
               <OrderForm
                 serviceTitle={openService.title}
-                onSuccess={() => setSubmitStatus('done')}
-                onError={() => setSubmitStatus('error')}
-                onSending={() => setSubmitStatus('sending')}
-                submitStatus={submitStatus}
                 onBack={() => setShowForm(false)}
               />
             )}
@@ -140,48 +135,44 @@ export function ServicesListWithModal({
 
 function OrderForm({
   serviceTitle,
-  onSuccess,
-  onError,
-  onSending,
-  submitStatus,
   onBack,
 }: {
   serviceTitle: string
-  onSuccess: () => void
-  onError: () => void
-  onSending: () => void
-  submitStatus: string
   onBack: () => void
 }) {
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const [done, setDone] = useState(false)
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const data = new FormData(form)
-    onSending()
-    try {
-      const res = await fetch('/api/order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.get('name'),
-          email: data.get('email'),
-          message: data.get('message'),
-          serviceTitle,
-        }),
-      })
-      if (res.ok) onSuccess()
-      else onError()
-    } catch {
-      onError()
-    }
+    const name = String(data.get('name') ?? '').trim()
+    const email = String(data.get('email') ?? '').trim()
+    const message = String(data.get('message') ?? '').trim()
+
+    const subject = encodeURIComponent(`Order: ${serviceTitle}`)
+    const body = encodeURIComponent(
+      [
+        message || '(no message)',
+        '',
+        '---',
+        `Service: ${serviceTitle}`,
+        `Name: ${name || '(no name)'}`,
+        `Email: ${email || '(no email)'}`,
+      ].join('\n'),
+    )
+
+    window.location.href = `mailto:${ORDER_MAIL_TO}?subject=${subject}&body=${body}`
+    setDone(true)
   }
 
-  if (submitStatus === 'done') {
+  if (done) {
     return (
       <div className="traekkr-order-success">
-        <p>Thank you. Your order has been sent.</p>
+        <p>Your email app should open with a draft to {ORDER_MAIL_TO}.</p>
         <p className="traekkr-order-success-note">
-          We will contact you at the email you provided.
+          Send the message from there to complete your request. We will follow up at the address
+          you entered in the form.
         </p>
       </div>
     )
@@ -199,7 +190,7 @@ function OrderForm({
             required
             className="traekkr-order-input"
             placeholder="Your name"
-            disabled={submitStatus === 'sending'}
+            autoComplete="name"
           />
         </label>
         <label className="traekkr-order-label">
@@ -210,7 +201,7 @@ function OrderForm({
             required
             className="traekkr-order-input"
             placeholder="your@email.com"
-            disabled={submitStatus === 'sending'}
+            autoComplete="email"
           />
         </label>
         <label className="traekkr-order-label">
@@ -220,27 +211,14 @@ function OrderForm({
             className="traekkr-order-input traekkr-order-textarea"
             placeholder="Tell us about your needs..."
             rows={4}
-            disabled={submitStatus === 'sending'}
           />
         </label>
-        {submitStatus === 'error' && (
-          <p className="traekkr-order-error">Something went wrong. Please try again.</p>
-        )}
         <div className="traekkr-order-actions">
-          <button
-            type="button"
-            className="traekkr-modal-order-btn traekkr-order-btn-secondary"
-            onClick={onBack}
-            disabled={submitStatus === 'sending'}
-          >
+          <button type="button" className="traekkr-modal-order-btn traekkr-order-btn-secondary" onClick={onBack}>
             Back
           </button>
-          <button
-            type="submit"
-            className="traekkr-modal-order-btn"
-            disabled={submitStatus === 'sending'}
-          >
-            {submitStatus === 'sending' ? 'Sending…' : 'Send order'}
+          <button type="submit" className="traekkr-modal-order-btn">
+            Send order
           </button>
         </div>
       </form>
