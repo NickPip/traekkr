@@ -880,116 +880,227 @@ button {
 }
 
 .traekkr-contact-card {
-  background: #000;
   overflow: hidden;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    165deg,
+    rgba(24, 24, 24, 0.97) 0%,
+    rgba(6, 6, 6, 0.98) 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 24px 48px -28px rgba(0, 0, 0, 0.9);
 }
 
 .traekkr-contact-header {
-  padding: 0.75rem 1.25rem;
-  background: #000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  text-align: right;
+  padding: 1.1rem 1.35rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 55%
+  );
 }
 
 .traekkr-contact-heading {
-  margin: 0 0 0.15rem;
-  font-size: 0.75rem;
+  position: relative;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.traekkr-contact-heading:last-of-type {
-  margin-top: 1.25rem;
-  margin-bottom: 0;
+.traekkr-contact-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.25rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--traekkr-accent), transparent);
+}
+
+.traekkr-contact-email-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.traekkr-contact-email-box {
+  padding: 0.85rem 1rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.035);
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.traekkr-contact-email-box:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.traekkr-contact-box-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.58);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.traekkr-contact-email-box .traekkr-contact-email {
+  font-size: 0.8125rem;
+  word-break: break-all;
+  line-height: 1.45;
+}
+
+@media (max-width: 36rem) {
+  .traekkr-contact-email-boxes {
+    grid-template-columns: 1fr;
+  }
+
+  .traekkr-contact-submit {
+    align-self: stretch;
+    min-width: 0;
+  }
 }
 
 .traekkr-contact-email {
   font-family: var(--font-mono);
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .traekkr-contact-email:hover {
   color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .traekkr-contact-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  gap: 1rem;
+  padding: 1.35rem 1.35rem 1.5rem;
 }
 
 .traekkr-contact-label {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.4rem;
 }
 
 .traekkr-contact-label-text {
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .traekkr-contact-input {
   width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.95rem;
-  font-family: inherit;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  line-height: 1.45;
   color: #fff;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.35rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.45rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .traekkr-contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.32);
 }
 
 .traekkr-contact-input:hover {
   border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.28);
 }
 
 .traekkr-contact-input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 0 3px var(--traekkr-accent-dim);
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 0 0 3px var(--traekkr-accent-dim),
+    0 0 22px -10px rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .traekkr-contact-textarea {
   resize: vertical;
-  min-height: 3.5rem;
+  min-height: 5.5rem;
+}
+
+.traekkr-contact-select {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 2.25rem;
+  background-color: rgba(0, 0, 0, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.45)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
 }
 
 .traekkr-contact-submit {
-  margin-top: 0.25rem;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  align-self: center;
+  min-width: 11rem;
+  padding: 0.72rem 1.6rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
-  background: #000;
+  color: rgba(255, 255, 255, 0.95);
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  border-radius: 0.45rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 8px 28px -12px rgba(0, 0, 0, 0.8);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.18s ease,
+    box-shadow 0.2s ease;
 }
 
 .traekkr-contact-submit:hover {
-  background: rgba(25, 25, 25, 1);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 14px 36px -14px rgba(0, 0, 0, 0.85);
 }
 
 .traekkr-contact-submit:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: 2px solid rgba(255, 255, 255, 0.55);
   outline-offset: 3px;
+}
+
+.traekkr-contact-submit:active {
+  transform: translateY(0);
 }
 
 @keyframes traekkr-contact-in {
