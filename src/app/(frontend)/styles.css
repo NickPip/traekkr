@@ -386,7 +386,7 @@ button {
 
 .traekkr-service-title {
   margin: 0 0 0.75rem;
-  font-size: 1.75rem;
+  font-size: var(--traekkr-service-title-size, 1.75rem);
   font-weight: 700;
   color: #fff;
 }
@@ -553,14 +553,14 @@ button {
 .traekkr-modal-title {
   margin: 0 0 1rem;
   padding-right: 2rem;
-  font-size: 1.35rem;
+  font-size: var(--traekkr-service-title-size, 1.35rem);
   font-weight: 600;
   color: #fff;
 }
 
 .traekkr-modal-description {
   margin: 0 0 1rem;
-  font-size: 0.95rem;
+  font-size: var(--traekkr-service-description-size, 0.95rem);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
 }

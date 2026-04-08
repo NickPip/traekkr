@@ -14,6 +14,8 @@ type ServiceDoc = {
   sortOrder?: number | null
   description?: string | null
   targetItems?: { item: string }[] | null
+  titleFontSizePx?: number | null
+  descriptionFontSizePx?: number | null
 }
 
 export default async function ServicesPage() {

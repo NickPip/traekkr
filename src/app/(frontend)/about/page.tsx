@@ -5,6 +5,7 @@ import React from 'react'
 
 import { BackButton } from '@/components/BackButton'
 import { RenderLexical } from '@/components/RenderLexical'
+import { fontSizePxToCss } from '@/lib/fontSizePx'
 import type { About } from '@/payload-types'
 
 import '../styles.css'
@@ -13,21 +14,10 @@ export const dynamic = 'force-dynamic'
 
 type AboutSection = NonNullable<About['sections']>[number]
 
-const ABOUT_FONT_PX_MIN = 8
-const ABOUT_FONT_PX_MAX = 120
-
-function aboutFontSizeToCss(value: number | null | undefined): string | null {
-  if (value == null || typeof value !== 'number' || !Number.isFinite(value))
-    return null
-  const px = Math.round(value)
-  if (px < ABOUT_FONT_PX_MIN || px > ABOUT_FONT_PX_MAX) return null
-  return `${px}px`
-}
-
 function getAboutSectionCardStyle(section: AboutSection): React.CSSProperties {
   const style: React.CSSProperties & Record<string, string> = {}
-  const headingCss = aboutFontSizeToCss(section.headingFontSizePx)
-  const contentCss = aboutFontSizeToCss(section.contentFontSizePx)
+  const headingCss = fontSizePxToCss(section.headingFontSizePx)
+  const contentCss = fontSizePxToCss(section.contentFontSizePx)
 
   if (headingCss) style['--traekkr-about-heading-size'] = headingCss
 
@@ -40,8 +30,8 @@ function getAboutCtaBlockStyle(
   about: About | null | undefined,
 ): React.CSSProperties {
   const style: React.CSSProperties & Record<string, string> = {}
-  const textCss = aboutFontSizeToCss(about?.ctaTextFontSizePx)
-  const btnCss = aboutFontSizeToCss(about?.ctaButtonFontSizePx)
+  const textCss = fontSizePxToCss(about?.ctaTextFontSizePx)
+  const btnCss = fontSizePxToCss(about?.ctaButtonFontSizePx)
   if (textCss) style['--traekkr-about-cta-text-size'] = textCss
   if (btnCss) style['--traekkr-about-cta-btn-size'] = btnCss
   return style

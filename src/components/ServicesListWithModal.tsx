@@ -4,14 +4,34 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
 import { BackButton } from '@/components/BackButton'
+import { fontSizePxToCss } from '@/lib/fontSizePx'
 
 const ORDER_MAIL_TO = 'projects@traekkr.dev'
 
-export type ServiceItem = {
+export interface ServiceItem {
   id: string
   title: string
   description?: string | null
   targetItems?: { item: string }[] | null
+  titleFontSizePx?: number | null
+  descriptionFontSizePx?: number | null
+}
+
+function serviceListCardStyle(service: ServiceItem): React.CSSProperties {
+  const title = fontSizePxToCss(service.titleFontSizePx)
+  if (!title) return {}
+  const style: React.CSSProperties & Record<string, string> = {}
+  style['--traekkr-service-title-size'] = title
+  return style
+}
+
+function serviceModalStyle(service: ServiceItem): React.CSSProperties {
+  const style: React.CSSProperties & Record<string, string> = {}
+  const title = fontSizePxToCss(service.titleFontSizePx)
+  const desc = fontSizePxToCss(service.descriptionFontSizePx)
+  if (title) style['--traekkr-service-title-size'] = title
+  if (desc) style['--traekkr-service-description-size'] = desc
+  return style
 }
 
 export function ServicesListWithModal({
@@ -61,6 +81,7 @@ export function ServicesListWithModal({
             <article
               key={service.id}
               className="traekkr-service-block traekkr-service-block-clickable"
+              style={serviceListCardStyle(service)}
               onClick={() => openModal(service)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -92,6 +113,7 @@ export function ServicesListWithModal({
         >
           <div
             className="traekkr-modal"
+            style={serviceModalStyle(openService)}
             onClick={(e) => e.stopPropagation()}
           >
             <button

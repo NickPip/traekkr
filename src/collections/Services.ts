@@ -50,6 +50,32 @@ export const Services: CollectionConfig = {
       },
     },
     {
+      name: 'titleFontSizePx',
+      type: 'number',
+      label: 'Service title font size (px)',
+      min: 8,
+      max: 120,
+      admin: {
+        placeholder: '32',
+        description:
+          'Optional. Pixel size for the title on the list and in the popup. Empty = theme defaults (larger on the list, slightly smaller in the popup).',
+        step: 1,
+      },
+    },
+    {
+      name: 'descriptionFontSizePx',
+      type: 'number',
+      label: 'Detailed description font size (px)',
+      min: 8,
+      max: 120,
+      admin: {
+        placeholder: '17',
+        description:
+          'Optional. Pixel size for the description in the popup only. Empty = theme default (~17px).',
+        step: 1,
+      },
+    },
+    {
       name: 'targetItems',
       type: 'array',
       label: 'Target',

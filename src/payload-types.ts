@@ -187,6 +187,14 @@ export interface Service {
    */
   description?: string | null;
   /**
+   * Optional. Pixel size for the title on the list and in the popup. Empty = theme defaults (larger on the list, slightly smaller in the popup).
+   */
+  titleFontSizePx?: number | null;
+  /**
+   * Optional. Pixel size for the description in the popup only. Empty = theme default (~17px).
+   */
+  descriptionFontSizePx?: number | null;
+  /**
    * List of target areas (e.g. "software source code", "build system"). Shown as comma-separated under "Target".
    */
   targetItems?:
@@ -389,6 +397,8 @@ export interface ServicesSelect<T extends boolean = true> {
   sortOrder?: T;
   title?: T;
   description?: T;
+  titleFontSizePx?: T;
+  descriptionFontSizePx?: T;
   targetItems?:
     | T
     | {
