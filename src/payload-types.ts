@@ -494,6 +494,14 @@ export interface About {
           };
           [k: string]: unknown;
         } | null;
+        /**
+         * Optional. Exact size in pixels for this card’s heading. Empty = theme default (~19px with the default root font size).
+         */
+        headingFontSizePx?: number | null;
+        /**
+         * Optional. Exact size in pixels for this card’s body text. Empty = theme default (~16px with the default root font size).
+         */
+        contentFontSizePx?: number | null;
         id?: string | null;
       }[]
     | null;
@@ -520,6 +528,14 @@ export interface About {
    * URL for the contact button (e.g. /contact).
    */
   ctaButtonHref?: string | null;
+  /**
+   * Optional. Pixel size for the text above the button. Empty = theme default (~16px).
+   */
+  ctaTextFontSizePx?: number | null;
+  /**
+   * Optional. Pixel size for the button label. Empty = theme default (~15px).
+   */
+  ctaButtonFontSizePx?: number | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -533,11 +549,15 @@ export interface AboutSelect<T extends boolean = true> {
     | {
         heading?: T;
         content?: T;
+        headingFontSizePx?: T;
+        contentFontSizePx?: T;
         id?: T;
       };
   ctaText?: T;
   ctaButtonText?: T;
   ctaButtonHref?: T;
+  ctaTextFontSizePx?: T;
+  ctaButtonFontSizePx?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

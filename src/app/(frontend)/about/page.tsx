@@ -5,10 +5,47 @@ import React from 'react'
 
 import { BackButton } from '@/components/BackButton'
 import { RenderLexical } from '@/components/RenderLexical'
+import type { About } from '@/payload-types'
 
 import '../styles.css'
 
 export const dynamic = 'force-dynamic'
+
+type AboutSection = NonNullable<About['sections']>[number]
+
+const ABOUT_FONT_PX_MIN = 8
+const ABOUT_FONT_PX_MAX = 120
+
+function aboutFontSizeToCss(value: number | null | undefined): string | null {
+  if (value == null || typeof value !== 'number' || !Number.isFinite(value))
+    return null
+  const px = Math.round(value)
+  if (px < ABOUT_FONT_PX_MIN || px > ABOUT_FONT_PX_MAX) return null
+  return `${px}px`
+}
+
+function getAboutSectionCardStyle(section: AboutSection): React.CSSProperties {
+  const style: React.CSSProperties & Record<string, string> = {}
+  const headingCss = aboutFontSizeToCss(section.headingFontSizePx)
+  const contentCss = aboutFontSizeToCss(section.contentFontSizePx)
+
+  if (headingCss) style['--traekkr-about-heading-size'] = headingCss
+
+  if (contentCss) style['--traekkr-about-content-size'] = contentCss
+
+  return style
+}
+
+function getAboutCtaBlockStyle(
+  about: About | null | undefined,
+): React.CSSProperties {
+  const style: React.CSSProperties & Record<string, string> = {}
+  const textCss = aboutFontSizeToCss(about?.ctaTextFontSizePx)
+  const btnCss = aboutFontSizeToCss(about?.ctaButtonFontSizePx)
+  if (textCss) style['--traekkr-about-cta-text-size'] = textCss
+  if (btnCss) style['--traekkr-about-cta-btn-size'] = btnCss
+  return style
+}
 
 function hasLexicalContent(
   value: unknown,
@@ -22,7 +59,7 @@ function hasLexicalContent(
   )
 }
 
-const DEFAULT_SECTIONS: Array<{ heading: string; content: unknown }> = [
+const DEFAULT_SECTIONS = [
   {
     heading: 'Who we are',
     content: {
@@ -85,7 +122,7 @@ const DEFAULT_SECTIONS: Array<{ heading: string; content: unknown }> = [
       },
     },
   },
-]
+] as unknown as AboutSection[]
 
 const DEFAULT_CTA = {
   root: {
@@ -112,12 +149,10 @@ export default async function AboutPage() {
     slug: 'about',
   })
 
-  const sections = ((about?.sections?.length ?? 0) > 0
-    ? about?.sections
-    : DEFAULT_SECTIONS) as Array<{
-    heading: string
-    content: unknown
-  }>
+  const sections: AboutSection[] =
+    (about?.sections?.length ?? 0) > 0
+      ? (about.sections as AboutSection[])
+      : DEFAULT_SECTIONS
   const hasAboutData = (about?.sections?.length ?? 0) > 0
   const ctaText =
     hasAboutData && about?.ctaText && hasLexicalContent(about.ctaText)
@@ -140,7 +175,11 @@ export default async function AboutPage() {
 
       <div className="traekkr-about-list">
         {sections.map((section, index) => (
-          <article key={index} className="traekkr-about-card">
+          <article
+            key={index}
+            className="traekkr-about-card"
+            style={getAboutSectionCardStyle(section)}
+          >
             <h2 className="traekkr-about-heading">{section.heading}</h2>
             <div className="traekkr-about-body">
               {hasLexicalContent(section.content) ? (
@@ -158,7 +197,7 @@ export default async function AboutPage() {
           </article>
         ))}
 
-        <div className="traekkr-about-cta">
+        <div className="traekkr-about-cta" style={getAboutCtaBlockStyle(about)}>
           {hasLexicalContent(ctaText) ? (
             <div className="traekkr-about-cta-text">
               <RenderLexical

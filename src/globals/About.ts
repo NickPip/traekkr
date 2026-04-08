@@ -25,6 +25,32 @@ export const About: GlobalConfig = {
           type: 'richText',
           label: 'Content',
         },
+        {
+          name: 'headingFontSizePx',
+          type: 'number',
+          label: 'Heading font size (px)',
+          min: 8,
+          max: 120,
+          admin: {
+            placeholder: '19',
+            description:
+              'Optional. Exact size in pixels for this card’s heading. Empty = theme default (~19px with the default root font size).',
+            step: 1,
+          },
+        },
+        {
+          name: 'contentFontSizePx',
+          type: 'number',
+          label: 'Content font size (px)',
+          min: 8,
+          max: 120,
+          admin: {
+            placeholder: '16',
+            description:
+              'Optional. Exact size in pixels for this card’s body text. Empty = theme default (~16px with the default root font size).',
+            step: 1,
+          },
+        },
       ],
       admin: {
         description: 'Each section appears as a card on the About page.',
@@ -51,6 +77,32 @@ export const About: GlobalConfig = {
       defaultValue: '/contact',
       admin: {
         description: 'URL for the contact button (e.g. /contact).',
+      },
+    },
+    {
+      name: 'ctaTextFontSizePx',
+      type: 'number',
+      label: 'CTA text font size (px)',
+      min: 8,
+      max: 120,
+      admin: {
+        placeholder: '16',
+        description:
+          'Optional. Pixel size for the text above the button. Empty = theme default (~16px).',
+        step: 1,
+      },
+    },
+    {
+      name: 'ctaButtonFontSizePx',
+      type: 'number',
+      label: 'CTA button label font size (px)',
+      min: 8,
+      max: 120,
+      admin: {
+        placeholder: '15',
+        description:
+          'Optional. Pixel size for the button label. Empty = theme default (~15px).',
+        step: 1,
       },
     },
   ],

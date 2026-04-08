@@ -1228,14 +1228,14 @@ button {
 
 .traekkr-about-heading {
   margin: 0 0 0.4rem;
-  font-size: 1.05rem;
+  font-size: var(--traekkr-about-heading-size, 1.05rem);
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.02em;
 }
 
 .traekkr-about-body {
-  font-size: 0.875rem;
+  font-size: var(--traekkr-about-content-size, 0.875rem);
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.88);
 }
@@ -1249,6 +1249,22 @@ button {
   font-weight: 600;
 }
 
+/* RenderLexical uses .traekkr-popup-* classes; those set fixed font sizes for
+   write-ups/modals. In About cards, inherit the card’s CMS-driven size instead. */
+.traekkr-about-body .traekkr-popup-body-content {
+  font-size: inherit;
+}
+
+.traekkr-about-body .traekkr-popup-description {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.traekkr-about-body .traekkr-popup-heading {
+  font-size: inherit;
+  font-weight: 600;
+}
+
 .traekkr-about-cta {
   margin-top: 0.25rem;
   padding: 0.75rem 1.25rem;
@@ -1258,9 +1274,20 @@ button {
 
 .traekkr-about-cta-text {
   margin: 0 0 0.6rem;
-  font-size: 0.875rem;
+  font-size: var(--traekkr-about-cta-text-size, 0.875rem);
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.88);
+}
+
+.traekkr-about-cta-text .traekkr-popup-body-content,
+.traekkr-about-cta-text .traekkr-popup-description {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.traekkr-about-cta-text .traekkr-popup-heading {
+  font-size: inherit;
+  font-weight: 600;
 }
 
 .traekkr-about-cta-text strong {
@@ -1271,7 +1298,7 @@ button {
 .traekkr-about-cta-btn {
   display: inline-block;
   padding: 0.4rem 1rem;
-  font-size: 0.85rem;
+  font-size: var(--traekkr-about-cta-btn-size, 0.85rem);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: #fff;
